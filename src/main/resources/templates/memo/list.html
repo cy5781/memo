@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>MemoList</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>宝宝数据列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>类型</th>
+            <th>内容</th>
+            <th>记录人</th>
+            <th>记录时间</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="memo : ${memos}">
+            <th scope="row" th:text="${memo.record_id}">1</th>
+            <td th:text="${memo.category}">milk</td>
+            <td th:text="${memo.content}">150ml</td>
+            <td th:text="${memo.last_update_by}">baba</td>
+            <td th:text="${memo.last_update_time}">time</td>
+            <td><a th:href="@{/toEdit(id=${memo.record_id})}">edit</a></td>
+            <td><a th:href="@{/delete(id=${memo.record_id})}">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">添加</a>
+    </div>
+</div>
+
+</body>
+</html>
